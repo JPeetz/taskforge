@@ -1,0 +1,31 @@
+export {
+  RobotAgent,
+  Task,
+  Competition,
+  CheckCircle,
+  Zap,
+  Coins,
+  Shield,
+  Wallet,
+  Network,
+  StarBadge,
+  Mail,
+  ArrowRight,
+  Search,
+  Code,
+  Globe,
+  Sparkle,
+  Clock,
+  Users,
+  TrendingUp,
+  MenuOpen,
+  MenuClose,
+  Solana,
+  USDC,
+  Forge,
+  ExternalLink,
+  iconSet,
+} from "./IconSet";
+
+export type { IconProps, IconName } from "./IconSet";
+export { default as IconGrid } from "./IconGrid";

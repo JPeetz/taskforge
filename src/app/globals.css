@@ -1,0 +1,329 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base Layer ─────────────────────────────────────────────────────────── */
+
+@layer base {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #31395c #0a0e1a;
+  }
+
+  *::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #0a0e1a;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: #31395c;
+    border-radius: 4px;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: #5a6181;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-navy text-white;
+  }
+
+  /* Selection */
+  ::selection {
+    background: rgba(139, 92, 246, 0.3);
+    color: #fff;
+  }
+
+  ::-moz-selection {
+    background: rgba(139, 92, 246, 0.3);
+    color: #fff;
+  }
+}
+
+/* ─── Component Layer ────────────────────────────────────────────────────── */
+
+@layer components {
+  /* Gradient text */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-accent-purple via-accent-purple-light to-neon-cyan;
+  }
+
+  .text-gradient-cyan {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-neon-cyan to-neon-cyan-light;
+  }
+
+  .text-gradient-solana {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-accent-purple via-neon-cyan to-accent-purple-light;
+  }
+
+  /* Glow effects */
+  .glow-purple {
+    text-shadow:
+      0 0 40px rgba(139, 92, 246, 0.3),
+      0 0 80px rgba(139, 92, 246, 0.1);
+  }
+
+  .glow-cyan {
+    text-shadow:
+      0 0 30px rgba(6, 182, 212, 0.3),
+      0 0 60px rgba(6, 182, 212, 0.1);
+  }
+
+  /* Glass morphism */
+  .glass {
+    @apply bg-navy-800/40 backdrop-blur-xl border border-white/[0.06];
+  }
+
+  .glass-strong {
+    @apply bg-navy-800/70 backdrop-blur-2xl border border-white/[0.08];
+  }
+
+  /* Cards */
+  .card {
+    @apply relative rounded-2xl bg-navy-800/40 backdrop-blur-sm border border-white/[0.04] 
+           transition-all duration-500 ease-out;
+  }
+
+  .card-glow {
+    @apply card;
+  }
+
+  .card-glow::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      rgba(139, 92, 246, 0.2),
+      transparent 40%,
+      transparent 60%,
+      rgba(6, 182, 212, 0.15)
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .card-glow:hover {
+    @apply bg-navy-700/60 border-white/[0.08];
+    box-shadow:
+      0 0 40px rgba(139, 92, 246, 0.08),
+      0 0 15px rgba(6, 182, 212, 0.05),
+      0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  .card-interactive {
+    @apply card transition-all duration-300 ease-out 
+           hover:scale-[1.02] hover:shadow-glow hover:border-accent-purple/20;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply relative inline-flex items-center justify-center px-8 py-3.5 rounded-xl
+           bg-gradient-to-r from-accent-purple to-accent-purple-dark
+           text-white font-semibold text-lg
+           transition-all duration-300 ease-out
+           hover:shadow-glow hover:scale-[1.02] hover:brightness-110
+           active:scale-[0.98]
+           disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:brightness-100;
+  }
+
+  .btn-primary-pulse {
+    @apply btn-primary;
+    animation: ctaPulse 2.5s ease-in-out infinite;
+  }
+
+  .btn-secondary {
+    @apply relative inline-flex items-center justify-center px-8 py-3.5 rounded-xl
+           bg-transparent text-white font-semibold text-lg
+           border border-white/10
+           transition-all duration-300 ease-out
+           hover:border-accent-purple/40 hover:bg-white/[0.04]
+           hover:shadow-glow active:scale-[0.98];
+  }
+
+  .btn-ghost {
+    @apply relative inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl
+           text-white/60 font-medium text-sm
+           transition-all duration-200 ease-out
+           hover:text-white hover:bg-white/[0.04];
+  }
+
+  /* Input fields */
+  .input-glass {
+    @apply w-full px-5 py-4 rounded-xl
+           bg-navy-800/60 backdrop-blur-sm border border-white/10
+           text-white placeholder-white/25
+           focus:outline-none focus:border-accent-purple/50 focus:ring-2 focus:ring-accent-purple/10
+           transition-all duration-200
+           shadow-sm;
+  }
+
+  .input-glass:hover {
+    @apply border-white/15;
+  }
+
+  /* Nav */
+  .nav-link {
+    @apply relative text-sm font-medium text-white/50 transition-colors duration-200
+           hover:text-white;
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+  }
+
+  .nav-link:hover::after {
+    transform: scaleX(1);
+  }
+
+  /* Section dividers */
+  .section-divider {
+    @apply mx-auto h-px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(139, 92, 246, 0.15),
+      rgba(6, 182, 212, 0.1),
+      transparent
+    );
+  }
+}
+
+/* ─── Utility Layer ──────────────────────────────────────────────────────── */
+
+@layer utilities {
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-24 sm:py-32 lg:py-40;
+  }
+
+  .section-padding-sm {
+    @apply py-20 sm:py-28;
+  }
+
+  /* Fade-in on scroll (used with IntersectionObserver in JS) */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.8s ease-out,
+      transform 0.8s ease-out;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Staggered reveal delays */
+  .reveal-delay-1 {
+    transition-delay: 0.1s;
+  }
+  .reveal-delay-2 {
+    transition-delay: 0.2s;
+  }
+  .reveal-delay-3 {
+    transition-delay: 0.3s;
+  }
+  .reveal-delay-4 {
+    transition-delay: 0.4s;
+  }
+}
+
+/* ─── Keyframes ──────────────────────────────────────────────────────────── */
+
+@keyframes ctaPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 20px rgba(139, 92, 246, 0.2),
+      0 0 40px rgba(6, 182, 212, 0.1);
+  }
+  50% {
+    box-shadow:
+      0 0 40px rgba(139, 92, 246, 0.4),
+      0 0 80px rgba(6, 182, 212, 0.2),
+      0 0 120px rgba(139, 92, 246, 0.1);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes borderGlow {
+  0%,
+  100% {
+    border-color: rgba(139, 92, 246, 0.1);
+  }
+  50% {
+    border-color: rgba(139, 92, 246, 0.3);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(139, 92, 246, 0.05),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
