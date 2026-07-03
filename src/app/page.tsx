@@ -733,7 +733,6 @@ export default function Home() {
                       <CheckCircle
                         size={14}
                         className="text-neon-cyan"
-                        strokeWidth={3}
                       />
                     </div>
                     <span className="text-white/50 text-sm sm:text-base">
