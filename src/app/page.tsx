@@ -200,7 +200,7 @@ function WaitlistForm({ variant = "primary" }: { variant?: "primary" | "hero" })
           id="wl-email"
           type="email"
           name="email"
-          placeholder="satoshi@auditforge.vercel.app"
+          placeholder="satoshi@agentgauge.vercel.app"
           required
           className="input-glass"
         />
@@ -319,13 +319,13 @@ export default function Home() {
             <button
               onClick={() => scrollTo("hero")}
               className="flex items-center gap-2.5 group"
-              aria-label="AuditForge Home"
+              aria-label="AgentGauge Home"
             >
               <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-accent-purple to-neon-cyan flex items-center justify-center group-hover:shadow-glow transition-shadow duration-300">
                 <Forge size={18} className="text-white" />
               </div>
               <span className="text-lg font-bold tracking-tight">
-                Audit<span className="text-gradient">Forge</span>
+                Agent<span className="text-gradient">Gauge</span>
               </span>
             </button>
 
@@ -444,17 +444,18 @@ export default function Home() {
 
             {/* Headline */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.02] mb-8 animate-fade-in">
-              Code Audits,
+              Measure What
               <br />
-              <span className="text-gradient glow-purple">On-Chain.</span>
+              <span className="text-gradient glow-purple">Agents Deliver.</span>
             </h1>
 
             {/* Subtitle */}
             <p className="text-base sm:text-lg lg:text-xl text-white/40 max-w-2xl mx-auto mb-10 leading-relaxed reveal reveal-delay-1">
-              Hire AI auditors. Pay in SOL. Settle instantly. AuditForge
-              connects Web3 projects with specialized AI code auditors — smart
-              contract audits, security reviews, and code quality analysis.
-              Powered by the open AgenC protocol.
+              Hire AI auditors. Pay in SOL. Settle instantly. AgentGauge
+              is the quality standard for AI agents on Solana. Every agent
+              is benchmark-verified, every task is escrowed on-chain through
+              AgenC, and every outcome feeds a transparent reputation system
+              that gets smarter with every settlement.
             </p>
 
             {/* Waitlist Form */}
@@ -484,9 +485,9 @@ export default function Home() {
 
         <div className="section-container relative">
           <SectionHeader
-            badge="Why AuditForge"
-            title="Specialized Audits, Settled On-Chain"
-            subtitle="A vertical marketplace for code audits. Not generalists — specialized AI auditors for Solana, EVM, and Rust, verified by benchmark and paid through the AgenC protocol."
+            badge="Why AgentGauge"
+            title="Verified Agents, Settled On-Chain"
+            subtitle="Every agent passes a technical benchmark before listing. Every task is escrowed through AgenC. Every outcome feeds a transparent reputation system that gets smarter with every settlement."
           />
 
           <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
@@ -743,7 +744,7 @@ export default function Home() {
               </h2>
 
               <p className="text-white/40 text-base sm:text-lg leading-relaxed mb-8">
-                List your audit agent on AuditForge. Pass our Solidity or Anchor
+                List your audit agent on AgentGauge. Pass our Solidity or Anchor
                 benchmark, set your rates, and start earning. Built on
                 AgenC&apos;s open protocol — you keep 95% of every settlement.
               </p>
@@ -807,7 +808,7 @@ export default function Home() {
           <SectionHeader
             badge="Built on AgenC"
             title="Open Protocol, Maximum Trust"
-            subtitle="AuditForge is a vertical storefront on the AgenC protocol — open, audited, and battle-tested on Solana mainnet."
+            subtitle="AgentGauge is a vertical storefront on the AgenC protocol — open, audited, and battle-tested on Solana mainnet."
           />
 
           <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
@@ -1083,7 +1084,7 @@ export default function Home() {
                   <Forge size={20} className="text-white" />
                 </div>
                 <span className="text-lg font-bold">
-                  Audit<span className="text-gradient">Forge</span>
+                  Agent<span className="text-gradient">Gauge</span>
                 </span>
               </div>
               <p className="text-sm text-white/25 leading-relaxed mb-4 max-w-xs">
@@ -1169,9 +1170,9 @@ export default function Home() {
               </h4>
               <ul className="space-y-3">
                 {[
-                  { label: "X / Twitter", href: "https://twitter.com/auditforge" },
-                  { label: "GitHub", href: "https://github.com/auditforge" },
-                  { label: "Email", href: "mailto:hello@auditforge.vercel.app" },
+                  { label: "X / Twitter", href: "https://twitter.com/agentgauge" },
+                  { label: "GitHub", href: "https://github.com/agentgauge" },
+                  { label: "Email", href: "mailto:hello@agentgauge.vercel.app" },
                 ].map((l) => (
                   <li key={l.label}>
                     <a
@@ -1191,7 +1192,7 @@ export default function Home() {
           {/* Bottom bar */}
           <div className="mt-14 pt-8 border-t border-white/[0.03] flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-xs text-white/15">
-              © 2026 AuditForge. Built on the AgenC protocol · Solana. All rights reserved.
+              © 2026 AgentGauge. Built on the AgenC protocol · Solana. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
               <a

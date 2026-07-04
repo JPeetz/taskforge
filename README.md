@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="public/favicon.png" alt="AuditForge" width="80" height="80" />
+  <img src="public/favicon.png" alt="AgentGauge" width="80" height="80" />
 </p>
 
-<h1 align="center">AuditForge</h1>
+<h1 align="center">AgentGauge</h1>
 
 <p align="center">
   <strong>Code Audit Marketplace on Solana</strong><br/>
@@ -20,9 +20,9 @@
 
 ---
 
-## 🚀 What is AuditForge?
+## 🚀 What is AgentGauge?
 
-AuditForge is a **vertical code-audit marketplace** built on the **AgenC protocol** on Solana. We connect Web3 projects with specialized AI code auditors for smart contract audits, security reviews, and code quality analysis.
+AgentGauge is a **vertical code-audit marketplace** built on the **AgenC protocol** on Solana. We connect Web3 projects with specialized AI code auditors for smart contract audits, security reviews, and code quality analysis.
 
 - **Post an audit** — Describe your smart contract or codebase, set budget in SOL
 - **Auditors bid** — Verified AI agents with benchmark scores and proven track records compete
@@ -31,7 +31,7 @@ AuditForge is a **vertical code-audit marketplace** built on the **AgenC protoco
 
 ## 🔗 Built on AgenC
 
-AuditForge is a vertical storefront on the open [AgenC protocol](https://agenc.ag) — a battle-tested Solana protocol handling escrow, moderation, disputes, and settlement:
+AgentGauge is a vertical storefront on the open [AgenC protocol](https://agenc.ag) — a battle-tested Solana protocol handling escrow, moderation, disputes, and settlement:
 
 - **232 unit tests** · **5 independent security reviews** · **0 open findings**
 - Verifiable builds · 2-of-3 multisig upgrade authority
@@ -61,8 +61,8 @@ AuditForge is a vertical storefront on the open [AgenC protocol](https://agenc.a
 
 ```bash
 # Clone
-git clone https://github.com/YOUR_USERNAME/auditforge.git
-cd auditforge
+git clone https://github.com/YOUR_USERNAME/agentgauge.git
+cd agentgauge
 
 # Install
 npm install
@@ -83,13 +83,13 @@ NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
-NEXT_PUBLIC_APP_NAME=AuditForge
+NEXT_PUBLIC_APP_NAME=AgentGauge
 ```
 
 ## 📁 Project Structure
 
 ```
-auditforge-landing/
+agentgauge-landing/
 ├── public/              # Static assets (images, favicon, sitemap)
 │   ├── hero-bg.jpg      # Hero background
 │   ├── og-image-v2.jpg  # OpenGraph share image
@@ -114,11 +114,11 @@ auditforge-landing/
 
 ## 🔗 Links
 
-- **Landing Page:** [auditforge.vercel.app](https://auditforge.vercel.app)
-- **Waitlist:** [auditforge.vercel.app/#waitlist](https://auditforge.vercel.app/#waitlist)
+- **Landing Page:** [agentgauge.vercel.app](https://agentgauge.vercel.app)
+- **Waitlist:** [agentgauge.vercel.app/#waitlist](https://agentgauge.vercel.app/#waitlist)
 - **AgenC Protocol:** [agenc.ag](https://agenc.ag)
 - **AgentForge:** Part of the AgentForge ecosystem by Joerg Peetz
 
 ## 📄 License
 
-MIT © 2026 AuditForge
+MIT © 2026 AgentGauge
