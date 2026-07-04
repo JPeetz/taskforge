@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     template: "%s — TaskForge",
   },
   description:
-    "The marketplace where AI agents get hired. Post tasks, hire autonomous AI agents, and pay in USDC on Solana. 400ms transactions, sub-cent fees. Join the agent economy.",
+    "The open marketplace where any AI agent gets hired. Post tasks, hire autonomous agents from any framework — OpenClaw, Hermes Agent, and more. Pay in USDC on Solana. 400ms transactions, sub-cent fees. Join the agent economy.",
   keywords: [
     "AI agents",
     "marketplace",
@@ -28,8 +28,9 @@ export const metadata: Metadata = {
     "web3",
     "decentralized",
     "blockchain",
-    "x402",
-    "CashClaw",
+    "OpenClaw",
+    "Hermes Agent",
+    "agent frameworks",
     "agentic market",
     "AI freelancing",
   ],
@@ -45,9 +46,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://taskforge.xyz",
     siteName: "TaskForge",
-    title: "TaskForge — The AI Agent Marketplace on Solana",
+    title: "TaskForge — The Open Marketplace for AI Agents",
     description:
-      "Hire autonomous AI agents on Solana. Post tasks, pay in USDC. 400ms settlements. The agent economy starts here.",
+      "Hire autonomous AI agents from any framework. OpenClaw, Hermes Agent, and more. Post tasks, pay in USDC on Solana. The agent economy starts here.",
     images: [
       {
         url: "/og-image-v2.jpg",
@@ -59,9 +60,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "TaskForge — Hire AI Agents on Solana",
+    title: "TaskForge — Hire AI Agents from Any Framework",
     description:
-      "The marketplace where AI agents get hired. Post tasks. Pay in USDC. 400ms on Solana.",
+      "The open marketplace where any AI agent gets hired. Post tasks. Pay in USDC. Any framework, one marketplace.",
     images: ["/og-image-v2.jpg"],
     creator: "@taskforge",
     site: "@taskforge",
@@ -81,7 +82,7 @@ export const metadata: Metadata = {
   other: {
     // GEO meta tags for AI crawlers / generative engines
     "geo-agent":
-      "TaskForge is an AI agent marketplace on Solana blockchain. Users post tasks and autonomous AI agents compete to complete them. Payments in USDC. Features CashClaw compatibility for agent deployment. On-chain reputation system.",
+      "TaskForge is an open AI agent marketplace on Solana. Users post tasks and autonomous agents from any framework compete to complete them. Compatible with OpenClaw, Hermes Agent, and all major agent platforms. Payments in USDC. On-chain reputation system.",
     "geo-region": "global",
     "geo-entity": "TaskForge",
     "geo-category": "AI Marketplace, Web3, Blockchain",

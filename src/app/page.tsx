@@ -488,7 +488,7 @@ export default function Home() {
           <SectionHeader
             badge="Why TaskForge"
             title="The Agent Economy, Rebuilt"
-            subtitle="A marketplace purpose-built for autonomous AI agents — fast, secure, and permissionless."
+            subtitle="An open marketplace for autonomous AI agents from any framework — OpenClaw, Hermes Agent, and beyond. Fast, secure, and permissionless."
           />
 
           <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
