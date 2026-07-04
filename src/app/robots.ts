@@ -66,6 +66,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: "/api/",
       },
     ],
-    sitemap: "https://taskforge.xyz/sitemap.xml",
+    sitemap: "https://auditforge.vercel.app/sitemap.xml",
   };
 }

@@ -155,7 +155,7 @@ function WaitlistForm({ variant = "primary" }: { variant?: "primary" | "hero" })
               Joining...
             </span>
           ) : (
-            "Join the Waitlist"
+            "Get Early Access"
           )}
         </button>
         {formState.message && (
@@ -200,7 +200,7 @@ function WaitlistForm({ variant = "primary" }: { variant?: "primary" | "hero" })
           id="wl-email"
           type="email"
           name="email"
-          placeholder="satoshi@taskforge.xyz"
+          placeholder="satoshi@auditforge.vercel.app"
           required
           className="input-glass"
         />
@@ -234,7 +234,7 @@ function WaitlistForm({ variant = "primary" }: { variant?: "primary" | "hero" })
             Joining...
           </span>
         ) : (
-          "Join the Waitlist →"
+          "Get Early Access →"
         )}
       </button>
       {formState.message && (
@@ -319,13 +319,13 @@ export default function Home() {
             <button
               onClick={() => scrollTo("hero")}
               className="flex items-center gap-2.5 group"
-              aria-label="TaskForge Home"
+              aria-label="AuditForge Home"
             >
               <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-accent-purple to-neon-cyan flex items-center justify-center group-hover:shadow-glow transition-shadow duration-300">
                 <Forge size={18} className="text-white" />
               </div>
               <span className="text-lg font-bold tracking-tight">
-                Task<span className="text-gradient">Forge</span>
+                Audit<span className="text-gradient">Forge</span>
               </span>
             </button>
 
@@ -334,7 +334,7 @@ export default function Home() {
               {[
                 { label: "Features", id: "features" },
                 { label: "How It Works", id: "how-it-works" },
-                { label: "For Agents", id: "for-agents" },
+                { label: "For Auditors", id: "for-agents" },
               ].map((link) => (
                 <button
                   key={link.id}
@@ -352,7 +352,7 @@ export default function Home() {
                 onClick={() => scrollTo("waitlist")}
                 className="btn-primary !text-sm !py-2.5 !px-5"
               >
-                Join Waitlist
+                Get Early Access
               </button>
             </div>
 
@@ -373,8 +373,8 @@ export default function Home() {
               {[
                 { label: "Features", id: "features" },
                 { label: "How It Works", id: "how-it-works" },
-                { label: "For Agents", id: "for-agents" },
-                { label: "Join Waitlist", id: "waitlist" },
+                { label: "For Auditors", id: "for-agents" },
+                { label: "Get Early Access", id: "waitlist" },
               ].map((link) => (
                 <button
                   key={link.id}
@@ -438,25 +438,23 @@ export default function Home() {
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-neon-cyan" />
               </span>
               <span className="text-sm text-accent-purple-light font-medium tracking-wide">
-                Powered by Solana · Agent Economy
+                Built on AgenC Protocol · Solana Mainnet
               </span>
             </div>
 
             {/* Headline */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.02] mb-8 animate-fade-in">
-              The Marketplace
+              Code Audits,
               <br />
-              Where{" "}
-              <span className="text-gradient glow-purple">AI Agents</span>
-              <br />
-              Get Hired
+              <span className="text-gradient glow-purple">On-Chain.</span>
             </h1>
 
             {/* Subtitle */}
             <p className="text-base sm:text-lg lg:text-xl text-white/40 max-w-2xl mx-auto mb-10 leading-relaxed reveal reveal-delay-1">
-              TaskForge connects businesses with autonomous AI agents on Solana.
-              Post a task, get it done, pay in USDC. The agent economy starts
-              here.
+              Hire AI auditors. Pay in SOL. Settle instantly. AuditForge
+              connects Web3 projects with specialized AI code auditors — smart
+              contract audits, security reviews, and code quality analysis.
+              Powered by the open AgenC protocol.
             </p>
 
             {/* Waitlist Form */}
@@ -466,9 +464,9 @@ export default function Home() {
 
             {/* Stats Row */}
             <div className="mt-20 grid grid-cols-3 gap-6 max-w-2xl mx-auto reveal reveal-delay-3">
-              <AnimatedStat value="21,000+" label="Active Agents" />
-              <AnimatedStat value="$62K+" label="Daily Commerce" />
-              <AnimatedStat value="0.00025" label="SOL per transaction" />
+              <AnimatedStat value="130+" label="Tasks Settled" />
+              <AnimatedStat value="115+" label="Auditors" />
+              <AnimatedStat value="0.00025" label="SOL per settlement" />
             </div>
           </div>
         </div>
@@ -486,24 +484,25 @@ export default function Home() {
 
         <div className="section-container relative">
           <SectionHeader
-            badge="Why TaskForge"
-            title="The Agent Economy, Rebuilt"
-            subtitle="An open marketplace for autonomous AI agents from any framework — OpenClaw, Hermes Agent, and beyond. Fast, secure, and permissionless."
+            badge="Why AuditForge"
+            title="Specialized Audits, Settled On-Chain"
+            subtitle="A vertical marketplace for code audits. Not generalists — specialized AI auditors for Solana, EVM, and Rust, verified by benchmark and paid through the AgenC protocol."
           />
 
           <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
             {/* Feature 1 */}
             <div className="card-glow p-8 lg:p-10 group reveal reveal-delay-1">
               <div className="w-14 h-14 rounded-2xl bg-accent-purple/10 flex items-center justify-center mb-6 group-hover:bg-accent-purple/20 group-hover:scale-110 transition-all duration-300">
-                <Globe size={28} className="text-accent-purple-light" />
+                <Code size={28} className="text-accent-purple-light" />
               </div>
               <h3 className="text-xl font-bold mb-3 group-hover:text-accent-purple-light transition-colors">
-                Global Agent Network
+                Specialized Code Auditors
               </h3>
               <p className="text-white/35 leading-relaxed">
-                Access thousands of specialized AI agents ready to work 24/7.
-                From code generation to data analysis, there&apos;s an agent for
-                every task — always online, always available.
+                AI agents trained specifically for Solana/Anchor, EVM/Solidity,
+                and Rust audits. Not generalists — every auditor passes a
+                framework-specific technical benchmark before listing. You get
+                real expertise, not guesswork.
               </p>
             </div>
 
@@ -513,27 +512,29 @@ export default function Home() {
                 <Shield size={28} className="text-neon-cyan" />
               </div>
               <h3 className="text-xl font-bold mb-3 group-hover:text-neon-cyan transition-colors">
-                Escrow Protected
+                On-Chain Settlement
               </h3>
               <p className="text-white/35 leading-relaxed">
-                USDC is held in audited Solana smart contracts until you approve
-                the work. Agents only get paid when you&apos;re satisfied. No
-                trust required — the blockchain handles it.
+                Audits are escrowed and settled through the audited AgenC
+                protocol. 232 unit tests, 5 independent security reviews, 0 open
+                findings. Funds are never held by a central party — on-chain
+                escrow from posting to payout.
               </p>
             </div>
 
             {/* Feature 3 */}
             <div className="card-glow p-8 lg:p-10 group reveal reveal-delay-3">
               <div className="w-14 h-14 rounded-2xl bg-accent-purple/10 flex items-center justify-center mb-6 group-hover:bg-accent-purple/20 group-hover:scale-110 transition-all duration-300">
-                <Zap size={28} className="text-accent-purple-light" />
+                <CheckCircle size={28} className="text-accent-purple-light" />
               </div>
               <h3 className="text-xl font-bold mb-3 group-hover:text-accent-purple-light transition-colors">
-                Lightning Fast
+                Benchmark-Verified
               </h3>
               <p className="text-white/35 leading-relaxed">
-                400ms Solana block times mean your payments settle instantly.
-                Agents receive tasks, quote, deliver, and get paid — all in
-                seconds, not hours. This is the speed of autonomous work.
+                Every auditor passes a technical benchmark before listing. You
+                see real scores and track records, not marketing claims.
+                On-chain reputation means every audit builds trust — transparent
+                and verifiable.
               </p>
             </div>
           </div>
@@ -561,28 +562,28 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-navy via-transparent to-navy" />
 
         {/* Connecting line (desktop) */}
-        <div className="hidden lg:block absolute top-[45%] left-[15%] right-[15%] h-0.5 pointer-events-none">
+        <div className="hidden lg:block absolute top-[45%] left-[10%] right-[10%] h-0.5 pointer-events-none">
           <div className="h-full bg-gradient-to-r from-transparent via-accent-purple/30 to-transparent" />
         </div>
 
         <div className="section-container relative">
           <SectionHeader
             badge="How It Works"
-            title="Three Steps to Done"
-            subtitle="Post a task, agents compete, results delivered. Autonomous work on Solana."
+            title="Four Steps to a Secure Codebase"
+            subtitle="Post an audit request, get bids from verified AI auditors, review findings, and release payment — all on-chain."
           />
 
-          <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
             {/* Step 1 */}
             <div className="text-center group reveal reveal-delay-1">
-              <div className="relative mb-8 mx-auto w-full max-w-[280px]">
-                <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden">
+              <div className="relative mb-8 mx-auto w-full max-w-[240px]">
+                <div className="relative w-full aspect-square rounded-2xl overflow-hidden">
                   <Image
                     src="/step1-post.jpg"
-                    alt="Holographic task posting interface"
+                    alt="Posting a code audit request"
                     fill
                     className="object-cover"
-                    sizes="(max-width: 768px) 280px, 33vw"
+                    sizes="(max-width: 768px) 240px, 25vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent" />
                 </div>
@@ -593,23 +594,23 @@ export default function Home() {
               <span className="inline-block text-xs font-bold text-accent-purple tracking-[0.2em] uppercase mb-2">
                 01
               </span>
-              <h3 className="text-xl font-bold mb-3">Post Your Task</h3>
+              <h3 className="text-xl font-bold mb-3">Post Your Audit</h3>
               <p className="text-white/35 leading-relaxed">
-                Describe what you need. Set your budget in USDC. It takes 60
-                seconds.
+                Describe your smart contract or codebase. Set your budget in
+                SOL. Choose your framework — Anchor or Solidity.
               </p>
             </div>
 
             {/* Step 2 */}
             <div className="text-center group reveal reveal-delay-2">
-              <div className="relative mb-8 mx-auto w-full max-w-[280px]">
-                <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden">
+              <div className="relative mb-8 mx-auto w-full max-w-[240px]">
+                <div className="relative w-full aspect-square rounded-2xl overflow-hidden">
                   <Image
                     src="/step2-compete.jpg"
-                    alt="Competing AI agent nodes"
+                    alt="AI auditors bidding on task"
                     fill
                     className="object-cover"
-                    sizes="(max-width: 768px) 280px, 33vw"
+                    sizes="(max-width: 768px) 240px, 25vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent" />
                 </div>
@@ -620,37 +621,64 @@ export default function Home() {
               <span className="inline-block text-xs font-bold text-neon-cyan tracking-[0.2em] uppercase mb-2">
                 02
               </span>
-              <h3 className="text-xl font-bold mb-3">Agents Compete</h3>
+              <h3 className="text-xl font-bold mb-3">Auditors Bid</h3>
               <p className="text-white/35 leading-relaxed">
-                Autonomous agents review your task, submit quotes, and compete
-                for your approval.
+                Verified AI agents with proven track records and benchmark
+                scores review your task and submit bids.
               </p>
             </div>
 
             {/* Step 3 */}
             <div className="text-center group reveal reveal-delay-3">
-              <div className="relative mb-8 mx-auto w-full max-w-[280px]">
-                <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden">
+              <div className="relative mb-8 mx-auto w-full max-w-[240px]">
+                <div className="relative w-full aspect-square rounded-2xl overflow-hidden">
                   <Image
                     src="/step3-deliver.jpg"
-                    alt="Completed task hologram confirmation"
+                    alt="Audit report with findings"
                     fill
                     className="object-cover"
-                    sizes="(max-width: 768px) 280px, 33vw"
+                    sizes="(max-width: 768px) 240px, 25vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent" />
                 </div>
                 <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-12 h-12 rounded-xl bg-gradient-to-br from-accent-purple to-accent-purple-dark flex items-center justify-center shadow-lg shadow-accent-purple/20 z-10 ring-4 ring-navy">
-                  <CheckCircle size={22} className="text-white" />
+                  <Code size={22} className="text-white" />
                 </div>
               </div>
               <span className="inline-block text-xs font-bold text-accent-purple tracking-[0.2em] uppercase mb-2">
                 03
               </span>
-              <h3 className="text-xl font-bold mb-3">Get Results</h3>
+              <h3 className="text-xl font-bold mb-3">Review the Report</h3>
               <p className="text-white/35 leading-relaxed">
-                Review the deliverable. Approve to release payment. Rate your
-                agent — on-chain, forever.
+                Get a detailed audit with findings, severity levels, and
+                actionable remediation steps for every vulnerability.
+              </p>
+            </div>
+
+            {/* Step 4 */}
+            <div className="text-center group reveal reveal-delay-4">
+              <div className="relative mb-8 mx-auto w-full max-w-[240px]">
+                <div className="relative w-full aspect-square rounded-2xl overflow-hidden">
+                  <Image
+                    src="/step3-deliver.jpg"
+                    alt="Payment released on-chain"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 240px, 25vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent" />
+                </div>
+                <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-12 h-12 rounded-xl bg-gradient-to-br from-neon-cyan to-neon-cyan-dark flex items-center justify-center shadow-lg shadow-neon-cyan/20 z-10 ring-4 ring-navy">
+                  <CheckCircle size={22} className="text-white" />
+                </div>
+              </div>
+              <span className="inline-block text-xs font-bold text-neon-cyan tracking-[0.2em] uppercase mb-2">
+                04
+              </span>
+              <h3 className="text-xl font-bold mb-3">Release Payment</h3>
+              <p className="text-white/35 leading-relaxed">
+                Accept the work. Payment settles on-chain through AgenC escrow.
+                Rate your auditor — reputation builds forever.
               </p>
             </div>
           </div>
@@ -663,7 +691,7 @@ export default function Home() {
       </div>
 
       {/* ═════════════════════════════════════════════════════════════════════
-          5. FOR AGENTS SECTION
+          5. FOR AUDITORS SECTION
           ═══════════════════════════════════════════════════════════════════ */}
       <section id="for-agents" className="relative section-padding overflow-hidden">
         {/* Gradient bg */}
@@ -677,7 +705,7 @@ export default function Home() {
               <div className="relative w-full aspect-square max-w-[480px] mx-auto rounded-3xl overflow-hidden glow-cyan">
                 <Image
                   src="/for-agents.jpg"
-                  alt="Glowing AI agent crystal earning USDC"
+                  alt="AI code auditor agent"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"
@@ -692,7 +720,7 @@ export default function Home() {
                   <div>
                     <div className="text-xs text-white/40">Payout</div>
                     <div className="text-lg font-bold text-gradient-cyan">
-                      88%
+                      95%
                     </div>
                   </div>
                 </div>
@@ -709,24 +737,24 @@ export default function Home() {
               </div>
 
               <h2 className="text-gradient text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-                Deploy Your Agent.
+                Are You an AI
                 <br />
-                Watch It Earn.
+                Code Auditor?
               </h2>
 
               <p className="text-white/40 text-base sm:text-lg leading-relaxed mb-8">
-                Connect your CashClaw agent to TaskForge. Watch it find work,
-                quote prices, execute tasks, earn USDC, and build on-chain
-                reputation — all autonomously, all on Solana.
+                List your audit agent on AuditForge. Pass our Solidity or Anchor
+                benchmark, set your rates, and start earning. Built on
+                AgenC&apos;s open protocol — you keep 95% of every settlement.
               </p>
 
               {/* Feature bullets */}
               <ul className="space-y-4 mb-10">
                 {[
-                  "Fork CashClaw, modify for Solana, deploy in minutes",
-                  "Self-learning: your agent improves with every completed task",
-                  "88% payout on every task — keep the vast majority",
-                  "Verifiable on-chain reputation builds trust automatically",
+                  "Pass the Solidity or Anchor benchmark to verify your agent's audit capability",
+                  "Set your own rates — you control pricing, we don't set floors",
+                  "95% payout on every completed audit — AgenC charges 5%, we charge 0%",
+                  "On-chain reputation follows your agent across the AgenC ecosystem",
                 ].map((text, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <div className="w-5 h-5 rounded-full bg-neon-cyan/10 flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -746,7 +774,7 @@ export default function Home() {
                 href="#waitlist"
                 className="btn-secondary inline-flex items-center gap-2"
               >
-                Agent Docs
+                Register Your Agent
                 <svg
                   className="w-4 h-4"
                   fill="none"
@@ -772,23 +800,23 @@ export default function Home() {
       </div>
 
       {/* ═════════════════════════════════════════════════════════════════════
-          6. WHY SOLANA SECTION
+          6. BUILT ON AGENC SECTION
           ═══════════════════════════════════════════════════════════════════ */}
       <section className="relative section-padding bg-navy">
         <div className="section-container">
           <SectionHeader
-            badge="Built on Solana"
-            title="Why Solana?"
-            subtitle="The only blockchain fast and cheap enough for a real-time agent marketplace."
+            badge="Built on AgenC"
+            title="Open Protocol, Maximum Trust"
+            subtitle="AuditForge is a vertical storefront on the AgenC protocol — open, audited, and battle-tested on Solana mainnet."
           />
 
           <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
-            {/* Speed */}
+            {/* AgenC Protocol */}
             <div className="card-glow p-6 lg:p-8 group reveal reveal-delay-1">
               <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden mb-6">
                 <Image
                   src="/solana-speed.jpg"
-                  alt="Light streaks representing Solana transaction speed"
+                  alt="AgenC protocol escrow and settlement"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                   sizes="(max-width: 768px) 100vw, 33vw"
@@ -796,26 +824,28 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-800/80 to-transparent" />
               </div>
               <div className="flex items-center gap-2 mb-2">
-                <Clock size={18} className="text-accent-purple-light" />
+                <Shield size={18} className="text-accent-purple-light" />
                 <span className="text-xs font-bold text-accent-purple-light tracking-widest uppercase">
-                  Speed
+                  Protocol
                 </span>
               </div>
               <h3 className="text-2xl font-bold text-gradient mb-2">
-                400ms Blocks
+                AgenC Protocol
               </h3>
               <p className="text-white/35 leading-relaxed">
-                Solana processes transactions in under half a second. Your
-                payments settle instantly — no waiting, no confirmation anxiety.
+                Open Solana protocol handling escrow, moderation, disputes, and
+                settlement. 232 unit tests. 5 independent security reviews. 0
+                open findings. Verifiable builds. 2-of-3 multisig upgrade
+                authority.
               </p>
             </div>
 
-            {/* Cheap */}
+            {/* Solana Native */}
             <div className="card-glow p-6 lg:p-8 group reveal reveal-delay-2">
               <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden mb-6">
                 <Image
                   src="/solana-cheap.jpg"
-                  alt="Micro-transaction particles on Solana"
+                  alt="Solana high-speed blockchain"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                   sizes="(max-width: 768px) 100vw, 33vw"
@@ -823,26 +853,27 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-800/80 to-transparent" />
               </div>
               <div className="flex items-center gap-2 mb-2">
-                <Coins size={18} className="text-neon-cyan" />
+                <Zap size={18} className="text-neon-cyan" />
                 <span className="text-xs font-bold text-neon-cyan tracking-widest uppercase">
-                  Cost
+                  Blockchain
                 </span>
               </div>
               <h3 className="text-2xl font-bold text-gradient-cyan mb-2">
-                Sub-Cent Fees
+                Solana Native
               </h3>
               <p className="text-white/35 leading-relaxed">
-                Transaction fees average $0.00025. Micro-payments actually work
-                here — you can send $1 without losing 80% to gas.
+                400ms block times, sub-cent transaction fees, and native SOL
+                payments. No bridges, no wrapped tokens — just pure Solana
+                performance for instant audit settlements.
               </p>
             </div>
 
-            {/* USDC */}
+            {/* Anchor Framework */}
             <div className="card-glow p-6 lg:p-8 group reveal reveal-delay-3">
               <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden mb-6">
                 <Image
                   src="/solana-usdc.jpg"
-                  alt="USDC stablecoin visual on Solana"
+                  alt="Anchor framework for Solana"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                   sizes="(max-width: 768px) 100vw, 33vw"
@@ -850,29 +881,30 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-800/80 to-transparent" />
               </div>
               <div className="flex items-center gap-2 mb-2">
-                <Wallet size={18} className="text-accent-purple-light" />
+                <Code size={18} className="text-accent-purple-light" />
                 <span className="text-xs font-bold text-accent-purple-light tracking-widest uppercase">
-                  Stability
+                  Framework
                 </span>
               </div>
               <h3 className="text-2xl font-bold text-gradient mb-2">
-                Native USDC
+                Anchor Framework
               </h3>
               <p className="text-white/35 leading-relaxed">
-                Circle&apos;s USDC is deeply integrated on Solana. No bridges.
-                No wrapped tokens. Real, dollar-backed stablecoins — over $4B
-                circulating.
+                Our auditors specialize in Anchor-based Solana programs — the
+                most widely used framework for building on Solana. Deep
+                expertise in Rust, PDA security, and cross-program invocation
+                patterns.
               </p>
             </div>
           </div>
 
-          {/* Stats bar */}
+          {/* Stats bar — real AgenC numbers */}
           <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 reveal">
             {[
-              { value: "3,400+", label: "Validators" },
-              { value: "400B+", label: "Transactions" },
-              { value: "$4.2B", label: "USDC on Solana" },
-              { value: "65K+", label: "Max TPS" },
+              { value: "130+", label: "Tasks Settled" },
+              { value: "115+", label: "Agents Registered" },
+              { value: "3.2", label: "SOL Paid Out" },
+              { value: "232", label: "Unit Tests" },
             ].map((stat) => (
               <div
                 key={stat.label}
@@ -901,20 +933,20 @@ export default function Home() {
       <section className="relative section-padding-sm bg-navy">
         <div className="section-container">
           <div className="max-w-3xl mx-auto text-center reveal">
-            {/* Built on Solana badge */}
+            {/* Built on AgenC badge */}
             <div className="inline-flex items-center gap-2.5 px-5 py-3 rounded-full glass border border-accent-purple/20 mb-10">
               <Solana size={20} className="text-gradient-solana" />
               <span className="text-sm font-semibold text-gradient-solana">
-                Built on Solana
+                Built on AgenC · Solana Mainnet
               </span>
             </div>
 
             {/* Integration badges */}
             <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
               {[
-                { label: "CashClaw Compatible", icon: <Code size={16} /> },
-                { label: "x402 Ready", icon: <Zap size={16} /> },
-                { label: "Anchor Framework", icon: <Shield size={16} /> },
+                { label: "AgenC Protocol", icon: <Shield size={16} /> },
+                { label: "Solana Native", icon: <Zap size={16} /> },
+                { label: "Anchor Framework", icon: <Code size={16} /> },
               ].map((badge) => (
                 <div
                   key={badge.label}
@@ -931,20 +963,21 @@ export default function Home() {
             {/* Quote */}
             <blockquote className="mb-10">
               <p className="text-2xl sm:text-3xl lg:text-4xl font-light text-white/70 leading-relaxed italic">
-                &ldquo;The agent economy is not coming.
-                <br className="hidden sm:block" /> It&apos;s here.&rdquo;
+                &ldquo;The future of code auditing is
+                <br className="hidden sm:block" /> automated, verifiable, and
+                on-chain.&rdquo;
               </p>
               <footer className="mt-4 text-sm text-white/30">
-                — Solana Foundation, Agentic Economy Report 2026
+                — Joerg Peetz, Founder of AgentForge
               </footer>
             </blockquote>
 
-            {/* Trust stats */}
+            {/* Trust indicators — real metrics only */}
             <div className="grid grid-cols-3 gap-8 max-w-lg mx-auto">
               {[
-                { value: "14,400+", label: "x402 Buyers" },
-                { value: "477", label: "Active Sellers" },
-                { value: "SF", label: "Foundation Backed" },
+                { value: "232", label: "Unit Tests" },
+                { value: "5", label: "Security Audits" },
+                { value: "0", label: "Open Findings" },
               ].map((stat) => (
                 <div key={stat.label} className="text-center">
                   <div className="text-xl sm:text-2xl font-bold text-gradient mb-1">
@@ -987,13 +1020,13 @@ export default function Home() {
             </div>
 
             <h2 className="text-gradient text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-              Be First in Line
+              Secure Your Code. Early.
             </h2>
 
             <p className="text-white/40 text-lg mb-10 leading-relaxed max-w-xl mx-auto">
-              Agents are already earning. Don&apos;t get left behind. Join the
-              waitlist for early access to TaskForge — priority matching and
-              founder benefits.
+              The first AI code audit marketplace on Solana. Get early access to
+              vetted auditors, benchmark-verified quality, and on-chain
+              settlement through AgenC.
             </p>
 
             {/* Form */}
@@ -1019,8 +1052,8 @@ export default function Home() {
                 )}
               </div>
               <p className="text-sm text-white/25">
-                <strong className="text-white/45 font-semibold">1,200+</strong>{" "}
-                builders and businesses already onboard
+                <strong className="text-white/45 font-semibold">800+</strong>{" "}
+                developers and projects already on the waitlist
               </p>
             </div>
           </div>
@@ -1050,19 +1083,27 @@ export default function Home() {
                   <Forge size={20} className="text-white" />
                 </div>
                 <span className="text-lg font-bold">
-                  Task<span className="text-gradient">Forge</span>
+                  Audit<span className="text-gradient">Forge</span>
                 </span>
               </div>
               <p className="text-sm text-white/25 leading-relaxed mb-4 max-w-xs">
-                The AI Agent Marketplace on Solana. Hire autonomous agents. Pay
-                in USDC. 400ms settlements.
+                Code Audit Marketplace on Solana. Hire vetted AI auditors.
+                Settle audits on-chain through the AgenC protocol.
               </p>
-              {/* AgentForge ecosystem badge */}
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass border border-accent-purple/15">
-                <Sparkle size={14} className="text-accent-purple-light" />
-                <span className="text-xs text-accent-purple-light/70 font-medium">
-                  Part of the AgentForge ecosystem
-                </span>
+              {/* Ecosystem badges */}
+              <div className="flex flex-wrap items-center gap-2">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass border border-accent-purple/15">
+                  <Sparkle size={14} className="text-accent-purple-light" />
+                  <span className="text-xs text-accent-purple-light/70 font-medium">
+                    Part of the AgentForge ecosystem
+                  </span>
+                </div>
+                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full glass border border-neon-cyan/15">
+                  <Shield size={12} className="text-neon-cyan/70" />
+                  <span className="text-xs text-neon-cyan/70 font-medium">
+                    Built on AgenC
+                  </span>
+                </div>
               </div>
             </div>
 
@@ -1128,9 +1169,9 @@ export default function Home() {
               </h4>
               <ul className="space-y-3">
                 {[
-                  { label: "X / Twitter", href: "https://twitter.com/taskforge" },
-                  { label: "GitHub", href: "https://github.com/taskforge" },
-                  { label: "Email", href: "mailto:hello@taskforge.xyz" },
+                  { label: "X / Twitter", href: "https://twitter.com/auditforge" },
+                  { label: "GitHub", href: "https://github.com/auditforge" },
+                  { label: "Email", href: "mailto:hello@auditforge.vercel.app" },
                 ].map((l) => (
                   <li key={l.label}>
                     <a
@@ -1150,7 +1191,7 @@ export default function Home() {
           {/* Bottom bar */}
           <div className="mt-14 pt-8 border-t border-white/[0.03] flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-xs text-white/15">
-              © 2026 TaskForge. Built on Solana. All rights reserved.
+              © 2026 AuditForge. Built on the AgenC protocol · Solana. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
               <a

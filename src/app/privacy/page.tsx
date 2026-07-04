@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — TaskForge",
-  description: "TaskForge privacy policy — how we handle your data, cookies, and privacy on the AI agent marketplace.",
+  title: "Privacy Policy — AuditForge",
+  description: "AuditForge privacy policy — how we handle your data, cookies, and privacy on the code audit marketplace.",
 };
 
 export default function PrivacyPage() {
@@ -15,21 +15,21 @@ export default function PrivacyPage() {
         <div className="prose prose-invert max-w-none space-y-8 text-white/60">
           <section>
             <h2 className="text-xl font-bold text-white mb-3">1. Information We Collect</h2>
-            <p>TaskForge is part of the <strong>AgentForge</strong> ecosystem. When you sign up for the waitlist or use our platform, we collect:</p>
+            <p>AuditForge is part of the <strong>AgentForge</strong> ecosystem. When you sign up for the waitlist or use our platform, we collect:</p>
             <ul className="list-disc pl-6 space-y-2 mt-3">
               <li><strong>Name and email address</strong> — provided when you join the waitlist or create an account.</li>
               <li><strong>Solana wallet address</strong> — when you transact on the marketplace.</li>
               <li><strong>Usage data</strong> — pages visited, features used, to improve the platform.</li>
-              <li><strong>Agent metadata</strong> — when listing an AI agent, including its capabilities, framework, and pricing.</li>
+              <li><strong>Audit agent metadata</strong> — when listing an AI code auditor, including its capabilities, benchmarks passed, and pricing.</li>
             </ul>
           </section>
 
           <section>
             <h2 className="text-xl font-bold text-white mb-3">2. How We Use Your Data</h2>
             <ul className="list-disc pl-6 space-y-2">
-              <li>To operate and improve the TaskForge marketplace.</li>
-              <li>To process transactions on the Solana blockchain.</li>
-              <li>To notify you about platform updates, new features, or agent activity.</li>
+              <li>To operate and improve the AuditForge marketplace.</li>
+              <li>To process transactions via the AgenC protocol on the Solana blockchain.</li>
+              <li>To notify you about platform updates, new features, or audit results.</li>
               <li>To prevent fraud and abuse through on-chain reputation tracking.</li>
               <li>We <strong>never</strong> sell your personal data to third parties.</li>
             </ul>
@@ -37,7 +37,7 @@ export default function PrivacyPage() {
 
           <section>
             <h2 className="text-xl font-bold text-white mb-3">3. Blockchain Data</h2>
-            <p>All transactions on TaskForge are recorded on the Solana blockchain. Blockchain data is public by nature and cannot be deleted or modified. We only store the minimum necessary off-chain data to provide our service.</p>
+            <p>All audit settlements on AuditForge are recorded on the Solana blockchain through the AgenC protocol. Blockchain data is public by nature and cannot be deleted or modified. We only store the minimum necessary off-chain data to provide our service.</p>
           </section>
 
           <section>
@@ -52,8 +52,8 @@ export default function PrivacyPage() {
 
           <section>
             <h2 className="text-xl font-bold text-white mb-3">6. Contact</h2>
-            <p>For privacy inquiries, contact us at <a href="mailto:privacy@taskforge.xyz" className="text-accent-purple-light hover:underline">privacy@taskforge.xyz</a>.</p>
-            <p className="mt-3">TaskForge is operated by AgentForge, Ireland.</p>
+            <p>For privacy inquiries, contact us at <a href="mailto:privacy@auditforge.vercel.app" className="text-accent-purple-light hover:underline">privacy@auditforge.vercel.app</a>.</p>
+            <p className="mt-3">AuditForge is operated by AgentForge, Ireland.</p>
           </section>
         </div>
       </article>
