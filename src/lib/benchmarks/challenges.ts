@@ -24,10 +24,10 @@ export interface BenchmarkChallenge {
   codeRepository: string;
   goldenFindings: GoldenFinding[];
   timeLimitMinutes: number;
-  passingScore: number; // e.g. 0.80 = 80%
+  passingScore: number;
 }
 
-// ── Challenges ─────────────────────────────────────────────────────────────
+// ── Challenges (aligned with real benchmark programs) ──────────────────────
 
 export const benchmarkChallenges: BenchmarkChallenge[] = [
   {
@@ -35,39 +35,71 @@ export const benchmarkChallenges: BenchmarkChallenge[] = [
     title: "Vulnerable Token Program Audit",
     skill: "solana-anchor-audit",
     difficulty: 1,
-    description: `Audit a simple Solana SPL token program written in Anchor for common vulnerabilities. This program contains intentionally introduced bugs including an unchecked account, integer overflow, and missing signer validation. Your task is to find and classify each vulnerability.`,
+    description: `Audit a simple Solana SPL-like token program written in Anchor. The program implements token initialization, minting, and transfers. The code compiles but contains 8 intentional vulnerabilities including missing signer checks, fake CPIs (state updated but no real token operations), integer overflow patterns, and missing validation.`,
     codeRepository: "https://github.com/agentgauge/benchmark-token-vuln",
     goldenFindings: [
       {
         severity: "critical",
         description:
-          "Missing signer check on mint_to instruction — any caller can mint arbitrary tokens without authorization",
+          "Missing signer check on mint authority — the `authority` field in MintTo is AccountInfo without Signer constraint. Handler checks key match but never verifies is_signer, allowing anyone to pass the authority's pubkey without that key signing the tx.",
         file: "programs/token-vuln/src/lib.rs",
-        lineRange: [42, 48],
+        lineRange: [130, 140],
         cwe: "CWE-862",
       },
       {
         severity: "high",
         description:
-          "Integer overflow in reward calculation allows wrapping to bypass maximum supply cap",
+          "Integer overflow in mint_to — `current_supply + amount` uses unchecked addition that can wrap past max_supply when overflow-checks are disabled.",
         file: "programs/token-vuln/src/lib.rs",
-        lineRange: [65, 72],
+        lineRange: [48, 52],
         cwe: "CWE-190",
+      },
+      {
+        severity: "high",
+        description:
+          "Fake token mint — mint_to updates PDA state but NEVER calls token::mint_to CPI. No real SPL tokens are ever minted; on-chain state is a lie.",
+        file: "programs/token-vuln/src/lib.rs",
+        lineRange: [52, 58],
+        cwe: "CWE-710",
+      },
+      {
+        severity: "high",
+        description:
+          "Fake token transfer — transfer function reads account balances but never calls token::transfer CPI. No actual token movement occurs.",
+        file: "programs/token-vuln/src/lib.rs",
+        lineRange: [65, 85],
+        cwe: "CWE-710",
+      },
+      {
+        severity: "high",
+        description:
+          "Arithmetic underflow in transfer — `from_balance - amount` can underflow if amount exceeds balance. No checked_sub used.",
+        file: "programs/token-vuln/src/lib.rs",
+        lineRange: [76, 78],
+        cwe: "CWE-191",
+      },
+      {
+        severity: "high",
+        description:
+          "Authority can be set to zero address — set_authority accepts any Pubkey including Pubkey::default(). Setting to zero permanently locks token minting.",
+        file: "programs/token-vuln/src/lib.rs",
+        lineRange: [90, 99],
+        cwe: "CWE-674",
       },
       {
         severity: "medium",
         description:
-          "Unchecked account deserialization — transfer authority account is not validated to be the expected token account type",
+          "Unchecked token account deserialization — TransferTokens struct accepts TokenAccount without validating they belong to the correct mint. Attacker can pass any SPL token account.",
         file: "programs/token-vuln/src/lib.rs",
-        lineRange: [88, 94],
+        lineRange: [91, 105],
         cwe: "CWE-1287",
       },
       {
         severity: "low",
         description:
-          "Missing event emission on transfer — no on-chain event emitted when tokens are transferred, reducing auditability",
+          "No event emissions — none of the instructions emit events. Off-chain indexers and monitoring tools cannot detect state changes (mints, transfers, authority changes).",
         file: "programs/token-vuln/src/lib.rs",
-        lineRange: [105, 110],
+        lineRange: [1, 180],
         cwe: "CWE-778",
       },
     ],
@@ -79,47 +111,55 @@ export const benchmarkChallenges: BenchmarkChallenge[] = [
     title: "Reentrancy in Vault Program",
     skill: "solana-anchor-audit",
     difficulty: 2,
-    description: `Audit a Solana vault program that allows users to deposit and withdraw SOL. The program contains a cross-program invocation (CPI) reentrancy vulnerability, an incorrect PDA derivation, and a business logic flaw in withdrawal limits. Find all issues and classify their severity.`,
+    description: `Audit a Solana vault program with SOL deposits, withdrawals, and delegated CPI withdrawals. The vault supports third-party program delegation for withdrawals. The code contains critical CPI reentrancy vectors, client-timestamp manipulation for limit bypass, missing cleanup instructions, and input validation gaps.`,
     codeRepository: "https://github.com/agentgauge/benchmark-vault-reentrancy",
     goldenFindings: [
       {
         severity: "critical",
         description:
-          "CPI reentrancy vulnerability — withdraw function calls external program before updating vault state, allowing recursive withdrawals that drain the vault",
+          "Arbitrary program CPI enables recursive reentrancy — withdraw_delegated performs a CPI to ANY program matching vault.delegate_program. delegation_active flag is set AFTER the CPI, so recursive calls see it as false. If delegate is set to the vault program itself, attacker drains 4x daily limit via CPI depth recursion.",
         file: "programs/vault-reentrancy/src/lib.rs",
-        lineRange: [78, 96],
-        cwe: "CWE-841",
+        lineRange: [95, 147],
+        cwe: "CWE-1283",
       },
       {
         severity: "high",
         description:
-          "Incorrect PDA derivation — vault authority PDA uses user public key instead of program-derived seed, allowing unauthorized access to vault funds",
+          "Delegate program not validated — set_delegate accepts any Pubkey including Pubkey::default() and crate::ID (self). No whitelist. Enables the reentrancy attack above.",
         file: "programs/vault-reentrancy/src/lib.rs",
-        lineRange: [35, 42],
-        cwe: "CWE-1283",
+        lineRange: [155, 165],
+        cwe: "CWE-863",
       },
       {
         severity: "medium",
         description:
-          "Withdrawal limit bypass — daily limit check uses timestamp from client-provided account which can be manipulated",
+          "Withdrawal limit bypass via client-provided timestamp — current_day is passed as an argument instead of derived from on-chain Clock. Attacker can always pass last_withdrawal_day + 1 to reset the daily counter each tx, achieving unlimited withdrawals.",
         file: "programs/vault-reentrancy/src/lib.rs",
-        lineRange: [55, 62],
+        lineRange: [65, 85],
         cwe: "CWE-470",
       },
       {
         severity: "medium",
         description:
-          "Missing close instruction — no way to close vault accounts, leading to rent accumulation and potential state bloat",
+          "Missing close vault instruction — no way to close a vault PDA and reclaim rent. SOL is trapped in the vault forever once initialized.",
         file: "programs/vault-reentrancy/src/lib.rs",
-        lineRange: [22, 28],
+        lineRange: [1, 250],
         cwe: "CWE-459",
+      },
+      {
+        severity: "medium",
+        description:
+          "Delegation flag lock — if finalize_delegation is never called, delegation_active stays true forever, permanently blocking all delegated withdrawals. No timeout or auto-reset mechanism.",
+        file: "programs/vault-reentrancy/src/lib.rs",
+        lineRange: [149, 153],
+        cwe: "CWE-664",
       },
       {
         severity: "low",
         description:
-          "Missing input validation on deposit amount — zero-deposit transactions waste compute without guard",
+          "Zero-deposit accepted — deposit() does not validate amount > 0. Zero-SOL transactions waste compute budget with no state change.",
         file: "programs/vault-reentrancy/src/lib.rs",
-        lineRange: [50, 53],
+        lineRange: [27, 44],
         cwe: "CWE-20",
       },
     ],
@@ -131,55 +171,79 @@ export const benchmarkChallenges: BenchmarkChallenge[] = [
     title: "Multisig Access Control Audit",
     skill: "solana-anchor-audit",
     difficulty: 3,
-    description: `Audit a Solana multisig program with complex access control. The program manages a treasury that requires multiple signers for withdrawals. Issues include: signature replay vulnerability, threshold manipulation during execution, incorrect signer weight accounting, and a front-running opportunity in proposal execution timing.`,
+    description: `Audit a Solana multisig treasury program with M-of-N signers, proposal lifecycle, and CPI-based execution. The program implements proposal creation, approval, and execution with time delays. The code contains 9 vulnerabilities including same-transaction threshold manipulation, proposal replay, client-provided signer weights, clock manipulation, and authorization bypass on proposal closing.`,
     codeRepository: "https://github.com/agentgauge/benchmark-multisig-access",
     goldenFindings: [
       {
         severity: "critical",
         description:
-          "Signature replay attack — proposal execution does not increment nonce or mark proposal as executed, allowing same proposal to be replayed indefinitely",
+          "Same-transaction threshold manipulation (TOCTOU) — update_threshold can be bundled with approve + execute in one atomic tx. Attacker lowers threshold→approves→executes→restores threshold. External observers see original threshold before and after.",
         file: "programs/multisig-access/src/lib.rs",
-        lineRange: [120, 135],
+        lineRange: [100, 135],
+        cwe: "CWE-367",
+      },
+      {
+        severity: "critical",
+        description:
+          "Proposal replay via non-atomic executed flag — proposal.executed is set AFTER the CPI transfer. Two execute_proposal instructions for the same proposal in one transaction both read executed=false before either writes, enabling double execution.",
+        file: "programs/multisig-access/src/lib.rs",
+        lineRange: [170, 190],
         cwe: "CWE-294",
       },
       {
         severity: "critical",
         description:
-          "Threshold manipulation — signer weight check queries mutable account state that can be modified within the same transaction as execution",
+          "Signer weight passed as untrusted argument — approve_proposal takes signer_weight as a caller-provided argument instead of reading from on-chain multisig state. Attacker can pass any weight to meet threshold in one approval.",
         file: "programs/multisig-access/src/lib.rs",
-        lineRange: [95, 108],
-        cwe: "CWE-367",
+        lineRange: [95, 135],
+        cwe: "CWE-807",
       },
       {
         severity: "high",
         description:
-          "Incorrect weight accounting — duplicate signer detection fails for signers with zero or negative weights, allowing weight inflation",
+          "Validator clock manipulation on execution delay — execute_proposal uses Clock::get() for delay check. Validators can manipulate the clock by ~1-2 seconds, enabling slightly-premature execution.",
         file: "programs/multisig-access/src/lib.rs",
-        lineRange: [65, 78],
-        cwe: "CWE-682",
-      },
-      {
-        severity: "high",
-        description:
-          "Front-running in proposal execution — execution delay is enforced via on-chain clock which can be gamed by validators, allowing premature execution",
-        file: "programs/multisig-access/src/lib.rs",
-        lineRange: [145, 155],
+        lineRange: [160, 170],
         cwe: "CWE-1219",
       },
       {
         severity: "medium",
         description:
-          "Unchecked account owner — treasury token account owner is not validated before transfer, allowing spoofed accounts to receive funds",
+          "Unchecked treasury account owner — ExecuteProposal struct has no constraint verifying treasury.owner == multisig.key(). Attacker can pass any token account as treasury; PDA signs the transfer authorization.",
         file: "programs/multisig-access/src/lib.rs",
-        lineRange: [160, 168],
+        lineRange: [225, 235],
         cwe: "CWE-1287",
+      },
+      {
+        severity: "medium",
+        description:
+          "Anyone can close proposals — close_proposal has no authorization check. Any signer can close any proposal, enabling censorship of pending transactions.",
+        file: "programs/multisig-access/src/lib.rs",
+        lineRange: [230, 240],
+        cwe: "CWE-862",
+      },
+      {
+        severity: "medium",
+        description:
+          "Signer weight can be set to zero — update_signer_weight accepts new_weight=0, silently removing a signer without transparency of explicit removal.",
+        file: "programs/multisig-access/src/lib.rs",
+        lineRange: [188, 202],
+        cwe: "CWE-682",
+      },
+      {
+        severity: "medium",
+        description:
+          "Incorrect transfer amount — execute_proposal transfers instruction_data.len() tokens instead of an explicit amount field. The transferred amount equals byte length of instruction data, which is nonsensical.",
+        file: "programs/multisig-access/src/lib.rs",
+        lineRange: [173, 182],
+        cwe: "CWE-1285",
       },
       {
         severity: "low",
         description:
-          "Missing event for proposal creation — no on-chain event emitted when a new proposal is created, reducing off-chain monitoring capability",
+          "No event emissions — create_multisig and propose_transaction never emit events. Off-chain monitoring and indexers cannot detect multisig creation or new proposals.",
         file: "programs/multisig-access/src/lib.rs",
-        lineRange: [45, 52],
+        lineRange: [1, 350],
         cwe: "CWE-778",
       },
     ],

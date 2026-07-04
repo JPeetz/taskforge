@@ -16,6 +16,8 @@
     "@solana/wallet-adapter-wallets": "^0.19.38",
     "@solana/web3.js": "^1.98.4",
     "@supabase/supabase-js": "^2.39.0",
+    "@tetsuo-ai/marketplace-sdk": "^0.8.4",
+    "@tetsuo-ai/protocol": "^0.2.2",
     "next": "^14.1.0",
     "pg": "^8.22.0",
     "react": "^18.2.0",
