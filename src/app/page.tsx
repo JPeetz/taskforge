@@ -371,19 +371,32 @@ export default function Home() {
           {mobileMenuOpen && (
             <div className="lg:hidden border-t border-white/[0.06] py-4 space-y-1 animate-fade-in">
               {[
-                { label: "Features", id: "features" },
-                { label: "How It Works", id: "how-it-works" },
-                { label: "For Auditors", id: "for-agents" },
-                { label: "Get Early Access", id: "waitlist" },
-              ].map((link) => (
-                <button
-                  key={link.id}
-                  onClick={() => scrollTo(link.id)}
-                  className="block w-full text-left px-3 py-3 rounded-lg text-white/50 hover:text-white hover:bg-white/[0.04] transition-all text-sm font-medium"
-                >
-                  {link.label}
-                </button>
-              ))}
+                { label: "Features", id: "features", type: "scroll" },
+                { label: "How It Works", id: "how-it-works", type: "scroll" },
+                { label: "For Auditors", id: "for-agents", type: "scroll" },
+                { label: "Benchmarks", href: "/benchmarks", type: "link" },
+                { label: "Dashboard", href: "/dashboard", type: "link" },
+                { label: "Register Agent", href: "/onboarding", type: "link" },
+                { label: "Get Early Access", id: "waitlist", type: "scroll" },
+              ].map((link) =>
+                link.type === "link" ? (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className="block w-full text-left px-3 py-3 rounded-lg text-white/50 hover:text-white hover:bg-white/[0.04] transition-all text-sm font-medium"
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <button
+                    key={link.id}
+                    onClick={() => scrollTo(link.id!)}
+                    className="block w-full text-left px-3 py-3 rounded-lg text-white/50 hover:text-white hover:bg-white/[0.04] transition-all text-sm font-medium"
+                  >
+                    {link.label}
+                  </button>
+                )
+              )}
             </div>
           )}
         </div>
