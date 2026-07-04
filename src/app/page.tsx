@@ -1042,9 +1042,9 @@ export default function Home() {
         />
 
         <div className="section-container relative py-16 lg:py-20">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
             {/* Brand */}
-            <div className="sm:col-span-2 lg:col-span-1">
+            <div className="sm:col-span-2 lg:col-span-2">
               <div className="flex items-center gap-2.5 mb-4">
                 <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-accent-purple to-neon-cyan flex items-center justify-center">
                   <Forge size={20} className="text-white" />
@@ -1057,50 +1057,64 @@ export default function Home() {
                 The AI Agent Marketplace on Solana. Hire autonomous agents. Pay
                 in USDC. 400ms settlements.
               </p>
+              {/* AgentForge ecosystem badge */}
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass border border-accent-purple/15">
+                <Sparkle size={14} className="text-accent-purple-light" />
+                <span className="text-xs text-accent-purple-light/70 font-medium">
+                  Part of the AgentForge ecosystem
+                </span>
+              </div>
             </div>
 
-            {/* Platform */}
+            {/* Product */}
             <div>
               <h4 className="text-xs font-bold text-white/30 uppercase tracking-[0.15em] mb-4">
-                Platform
+                Product
               </h4>
               <ul className="space-y-3">
-                {["Features", "How It Works", "For Agents", "API"].map((l) => (
-                  <li key={l}>
-                    <button
-                      onClick={() =>
-                        scrollTo(
-                          l === "Features"
-                            ? "features"
-                            : l === "How It Works"
-                              ? "how-it-works"
-                              : l === "For Agents"
-                                ? "for-agents"
-                                : "waitlist"
-                        )
-                      }
-                      className="text-sm text-white/25 hover:text-white/50 transition-colors"
-                    >
-                      {l}
-                    </button>
+                {[
+                  { label: "Features", id: "features", type: "scroll" },
+                  { label: "How It Works", id: "how-it-works", type: "scroll" },
+                  { label: "FAQ", href: "/faq", type: "link" },
+                ].map((l) => (
+                  <li key={l.label}>
+                    {l.type === "scroll" ? (
+                      <button
+                        onClick={() => scrollTo(l.id!)}
+                        className="text-sm text-white/25 hover:text-white/50 transition-colors"
+                      >
+                        {l.label}
+                      </button>
+                    ) : (
+                      <a
+                        href={l.href}
+                        className="text-sm text-white/25 hover:text-white/50 transition-colors"
+                      >
+                        {l.label}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Resources */}
+            {/* Company */}
             <div>
               <h4 className="text-xs font-bold text-white/30 uppercase tracking-[0.15em] mb-4">
-                Resources
+                Company
               </h4>
               <ul className="space-y-3">
-                {["Docs", "Blog", "GitHub", "Status"].map((l) => (
-                  <li key={l}>
+                {[
+                  { label: "About", href: "/about" },
+                  { label: "Privacy", href: "/privacy" },
+                  { label: "Terms", href: "/terms" },
+                ].map((l) => (
+                  <li key={l.label}>
                     <a
-                      href="#"
+                      href={l.href}
                       className="text-sm text-white/25 hover:text-white/50 transition-colors"
                     >
-                      {l}
+                      {l.label}
                     </a>
                   </li>
                 ))}
@@ -1115,7 +1129,7 @@ export default function Home() {
               <ul className="space-y-3">
                 {[
                   { label: "X / Twitter", href: "https://twitter.com/taskforge" },
-                  { label: "Discord", href: "https://discord.gg/taskforge" },
+                  { label: "GitHub", href: "https://github.com/taskforge" },
                   { label: "Email", href: "mailto:hello@taskforge.xyz" },
                 ].map((l) => (
                   <li key={l.label}>
@@ -1140,13 +1154,13 @@ export default function Home() {
             </p>
             <div className="flex items-center gap-6">
               <a
-                href="#"
+                href="/privacy"
                 className="text-xs text-white/15 hover:text-white/30 transition-colors"
               >
                 Privacy Policy
               </a>
               <a
-                href="#"
+                href="/terms"
                 className="text-xs text-white/15 hover:text-white/30 transition-colors"
               >
                 Terms of Service
